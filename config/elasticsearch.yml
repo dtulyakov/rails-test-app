@@ -1,7 +1,7 @@
 development:
   url: 'http://localhost:9200'
 test:
-  url: 'http://elasticsearch:9200'
+  url: 'http://localhost:9200'
 staging:
   url: 'http://localhost:9200'
 prodcution:
