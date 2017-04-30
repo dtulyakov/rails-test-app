@@ -1,0 +1,29 @@
+---
+- hosts: jr
+  user: deploy
+  sudo_user: root
+
+  tasks:
+    - name: gitclone task
+      git:
+        dest=/home/deploy/rails-test-app
+        key_file=/home/t/.ssh/id_rsa
+        repo="git@github.com:dtulyakov/rails-test-app.git"
+        version=master
+        force=yes
+        update=yes
+        clone=yes
+        accept_hostkey=yes
+
+    - name: bundler install task
+      bundler:
+        state=present
+        binstub_directory=/home/deploy/rails-test-app/vendor/bundle
+        chdir=/home/deploy/rails-test-app
+
+    - name: restart supervisor app
+      sudo: yes
+      supervisorctl: name={{ item }} state=restarted
+      with_items:
+        - rails
+        - sidekiq

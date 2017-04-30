@@ -34,7 +34,7 @@ end
 group :development do
   gem 'listen', '~> 3.0.5'
   gem 'letter_opener'
-  gem 'capistrano'
-  gem 'capistrano-rails'
-  gem 'capistrano-bundler'
+  #gem 'capistrano'
+  #gem 'capistrano-rails'
+  #gem 'capistrano-bundler'
 end
